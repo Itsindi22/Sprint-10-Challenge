@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateFullName, updateSize, updateTopping } from '../state/formState';
 import { useCreateOrderMutation } from '../state/orderApi';
-
+import {clearForm} from '../state/formState'
 const initialFormState = { // suggested
   fullName: '',
   size: '',
@@ -21,6 +21,7 @@ export default function PizzaForm() {
   const handleSumbit = (e) => {
     e.preventDefault();
     createOrder(formState);
+    dispatch(clearForm());
   }
 
   return (

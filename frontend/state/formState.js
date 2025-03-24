@@ -22,9 +22,14 @@ const formSlice = createSlice({
         else {
             state.toppings.push(action.payload)
         }
+    },
+    clearForm:(state) => {
+      state.fullName = ''
+      state.size = ''
+      state.toppings = []
     }
   }
 })
 
 export default formSlice.reducer
-export const { updateFullName, updateSize, updateTopping } = formSlice.actions
+export const { updateFullName, updateSize, updateTopping,clearForm } = formSlice.actions

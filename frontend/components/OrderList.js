@@ -1,18 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useGetOrdersQuery } from '../state/orderApi'
 
 export default function OrderList() {
-  const orders = []
-  return (
+const {data: orders} = useGetOrdersQuery();
+const [sizeFilter, setSizeFilter] = useState("All");
+
+let filterOrders =orders?.filter((order) => {
+  if (sizeFilter === "All") {
+    return true;
+  }
+  return order.size === sizeFilter
+})
+return (
     <div id="orderList">
       <h2>Pizza Orders</h2>
       <ol>
         {
-          orders.map(() => {
+          filterOrders?.map((order) => {
             return (
-              <li key={1}>
+              <li key={order.id}>
                 <div>
-                  order details here
-                </div>
+                {order.customer} ordered a size {order.size} with {""}
+                {order.toppings.length}{""}
+                {order.toppings.length === 1 ? "topping" : "toppings"}
+                  </div>
               </li>
             )
           })
@@ -20,16 +31,20 @@ export default function OrderList() {
       </ol>
       <div id="sizeFilters">
         Filter by size:
-        {
-          ['All', 'S', 'M', 'L'].map(size => {
-            const className = `button-filter${size === 'All' ? ' active' : ''}`
-            return <button
+        { ['All', 'S', 'M', 'L'].map((size) => {
+            const className = `button-filter${size === sizeFilter ? ' active' : ""}`;
+            return (
+               <button
               data-testid={`filterBtn${size}`}
               className={className}
-              key={size}>{size}</button>
-          })
-        }
-      </div>
+              key={size}
+              onClick={() => setSizeFilter(size)}
+              >
+                {size}
+              </button>
+            );
+})}
+        </div>
     </div>
   )
 }

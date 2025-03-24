@@ -1,18 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
+import { orderApi } from './orderApi';
+import formSlice from '../state/formState'; // Adjust if it's a named export
 
-const exampleReducer = (state = { count: 0 }) => {
-  return state
-}
 
 export const resetStore = () => configureStore({
   reducer: {
-    example: exampleReducer,
-    // add your reducer(s) here
+form: formSlice,
+    [orderApi.reducerPath]: orderApi.reducer,
   },
-  middleware: getDefault => getDefault().concat(
-    // if using RTK Query for your networking: add your middleware here
-    // if using Redux Thunk for your networking: you can ignore this
-  ),
-})
+  middleware: (getDefault) => getDefault().concat(orderApi.middleware),
+});
 
-export const store = resetStore()
+export const store = resetStore();

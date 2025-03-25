@@ -55,6 +55,7 @@ export default function PizzaForm() {
             <option value="L">Large</option>
           </select>
         </div>
+        {(formState.size !== 'S' || formState.state !== 'M' || formState.side !=='L') && <div> size must be one of the following values: S,</div>}
       </div>
 
       <div className="input-group">

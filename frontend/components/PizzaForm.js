@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearForm, updateFullName, updateSize, updateTopping } from '../state/formState';
+import { updateFullName, updateSize, updateTopping,clearForm } from '../state/formState';
 import { useCreateOrderMutation } from '../state/orderApi';
-import {clearForm} from '../state/formState'
+
 const initialFormState = { // suggested
   fullName: '',
   size: '',

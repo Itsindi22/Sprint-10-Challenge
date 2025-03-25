@@ -32,4 +32,4 @@ clearForm:(state) => {
 }
 })
 export default formSlice.reducer
-export const { updateFullName, updateSize, updateTopping,clearForm } = formSlice.actions
+export const { updateFullName, updateSize, updateTopping,clearForm} = formSlice.actions

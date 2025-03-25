@@ -21,8 +21,8 @@ return (
             return (
               <li key={order.id}>
                 <div>
-                {order.customer} ordered a size {order.size} with {toppingsCount === 0 ? 'no':toppingsCount}{""}
-                {toppingsCount === 1 ? "topping" : "toppings"}
+                {order.customer} ordered a size {order.size} with  {toppingsCount}{""}
+                 {toppingsCount === 1 ? "topping" : "toppings"}
                   </div>
               </li>
             )

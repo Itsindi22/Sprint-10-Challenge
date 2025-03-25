@@ -17,12 +17,12 @@ return (
       <ol>
         {
           filterOrders?.map((order) => {
+            const toppingsCount = order.toppings?.length || 0;
             return (
               <li key={order.id}>
                 <div>
-                {order.customer} ordered a size {order.size} with {""}
-                {order.toppings.length}{""}
-                {order.toppings.length === 1 ? "topping" : "toppings"}
+                {order.customer} ordered a size {order.size} with {toppingsCount === 0 ? 'no':toppingsCount}{""}
+                {toppingsCount === 1 ? "topping" : "toppings"}
                   </div>
               </li>
             )

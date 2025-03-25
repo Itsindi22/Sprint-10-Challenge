@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateFullName, updateSize, updateTopping } from '../state/formState';
+import { clearForm, updateFullName, updateSize, updateTopping } from '../state/formState';
 import { useCreateOrderMutation } from '../state/orderApi';
 import {clearForm} from '../state/formState'
 const initialFormState = { // suggested
@@ -15,17 +15,17 @@ const initialFormState = { // suggested
 
 export default function PizzaForm() {
   const formState = useSelector(state => state.form);
-  const dispatch = useDispatch();
   const [createOrder,{isError,isLoading}] = useCreateOrderMutation()
+  const dispatch = useDispatch();
   
-  const handleSumbit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     createOrder(formState);
     dispatch(clearForm());
   }
 
   return (
-    <form onSubmit={handleSumbit}>
+    <form onSubmit={handleSubmit}>
       <h2>Pizza Form</h2>
       {isLoading && <div className='pending'>Order in progress...</div>}
       {isError && <div className='failure'>Order failed: fullName is required</div>}

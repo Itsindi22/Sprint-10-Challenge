@@ -15,7 +15,6 @@ const formSlice = createSlice({
         state.size = action.payload
     },
     updateTopping: (state, action) => {
-        console.log(state.toppings.includes(action.payload));
         if (state.toppings.includes(action.payload)) {
             state.toppings = state.toppings.filter(topping => topping !== action.payload)
         }
@@ -23,13 +22,14 @@ const formSlice = createSlice({
             state.toppings.push(action.payload)
         }
     },
-    clearForm:(state) => {
-      state.fullName = ''
-      state.size = ''
-      state.toppings = []
-    }
-  }
-})
+clearForm:(state) => {
+    state.fullName = ''
+    state.size = ''
+    state.toppings = []
+}
+  
 
+}
+})
 export default formSlice.reducer
 export const { updateFullName, updateSize, updateTopping,clearForm } = formSlice.actions
